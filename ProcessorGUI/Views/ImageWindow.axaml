@@ -10,5 +10,10 @@
 	<Design.DataContext>
 		<vm:ImageViewModel/>
 	</Design.DataContext>
+	<!--<Window.ContextMenu>
+		<ContextMenu>
+			<MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}"/>
+		</ContextMenu>
+	</Window.ContextMenu>-->
 	<Image Source="{Binding Image}"></Image>
 </Window>
