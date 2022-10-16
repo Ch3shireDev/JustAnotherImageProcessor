@@ -1,15 +1,28 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Media.Imaging;
+using ProcessorLibrary;
 using ReactiveUI;
 
 namespace ProcessorGUI.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    private readonly IFileSelectService? _fileSelectService;
+    private readonly IFileService? _fileService;
+    private readonly IImageWindowService? _imageWindowService;
+
+    public MainWindowViewModel()
+    {
+    }
+
+    public MainWindowViewModel(IFileService fileService, IFileSelectService fileSelectService,
+        IImageWindowService imageWindowService)
+    {
+        _fileService = fileService;
+        _fileSelectService = fileSelectService;
+        _imageWindowService = imageWindowService;
+    }
+
     public ICommand OpenImageWindowCommand => ReactiveCommand.Create(OpenImageWindow);
     public ICommand CreateThresholdWindowCommand => ReactiveCommand.Create(CreateThresholdImageWindow);
 
@@ -19,24 +32,12 @@ public class MainWindowViewModel : ViewModelBase
 
     private async Task OpenImageWindow()
     {
-        var mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
-            ? desktop.MainWindow
-            : null;
-        var fileDialog = new OpenFileDialog
-        {
-            AllowMultiple = true
-        };
-        var filePaths = await fileDialog.ShowAsync(mainWindow);
+        var filePaths = await _fileSelectService.SelectFiles();
         if (filePaths == null) return;
         foreach (var filePath in filePaths)
         {
-            var bitmap = new Bitmap(filePath);
-            var size = bitmap.Size;
-            var width = size.Width;
-            var height = size.Height;
-            var title = $"{filePath} ({width}x{height})";
-
-            Tools.OpenImageWindow(bitmap, title).Show();
+            var bitmap = _fileService.LoadBitmap(filePath);
+            _imageWindowService.ShowImage(bitmap);
         }
     }
 }

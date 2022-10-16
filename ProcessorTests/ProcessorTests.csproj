@@ -15,4 +15,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessorGUI\ProcessorGUI.csproj" />
+    <ProjectReference Include="..\ProcessorLibrary\ProcessorLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

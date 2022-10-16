@@ -24,6 +24,15 @@
 	<PackageReference Include="Avalonia" Version="0.10.18" />
 	<PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
 	<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
+	<PackageReference Include="ScottPlot.Avalonia" Version="4.1.58" />
 	<PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessorLibrary\ProcessorLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\ThresholdWindow.axaml.cs">
+      <DependentUpon>ThresholdWindow.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

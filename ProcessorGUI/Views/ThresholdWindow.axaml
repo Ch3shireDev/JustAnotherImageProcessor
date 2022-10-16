@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:ProcessorGUI.ViewModels"
+        mc:Ignorable="d" Width="400"
+        SizeToContent="Height"
+        x:Class="ProcessorGUI.Views.ThresholdWindow"
+        Title="Threshold">
+    <Design.DataContext>
+        <viewModels:ThresholdViewModel />
+    </Design.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Threshold:" Margin="10"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Slider 
+                Minimum="{Binding MinValue}"
+                Maximum="{Binding MaxValue}"
+ Margin="10" Grid.Column="0" Value="{Binding Threshold, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Margin="10" Text="{Binding ValueStr}" />
+        </Grid>
+    </Grid>
+</Window>
