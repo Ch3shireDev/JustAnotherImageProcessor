@@ -2,5 +2,6 @@
 
 public interface IFileService
 {
-    BitmapData LoadBitmap(string filename);
+    ImageData LoadBitmap(string filename);
+    void SaveImage(string fileName, ImageData selectedImage);
 }

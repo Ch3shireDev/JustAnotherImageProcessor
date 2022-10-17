@@ -1,8 +1,9 @@
+using ReactiveUI;
 using ScottPlot;
 
 namespace ProcessorGUI.ViewModels;
 
-public class PlotViewModel : ViewModelBase
+public class PlotViewModel : ReactiveObject
 {
     public Plot Plot { get; set; }
 }

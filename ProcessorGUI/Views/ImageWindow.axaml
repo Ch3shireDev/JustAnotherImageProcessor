@@ -3,19 +3,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ProcessorGUI.ViewModels"
-        mc:Ignorable="d" 
-		MaxHeight="400"
-		SizeToContent="WidthAndHeight"
+        mc:Ignorable="d"
+        MaxHeight="400"
+        SizeToContent="WidthAndHeight"
         x:Class="ProcessorGUI.Views.ImageWindow"
-        Title="ImageWindow">
-	<Design.DataContext>
-		<vm:ImageViewModel/>
-	</Design.DataContext>
-	<Window.ContextMenu>
-		<ContextMenu>
-			<MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}"/>
-			<MenuItem Header="Show histogram" Command="{Binding ShowHistogramCommand}"/>
-		</ContextMenu>
-	</Window.ContextMenu>
-	<Image Source="{Binding Image}"></Image>
+        Title="ImageWindow"
+		Activated="ActivatedEvent"
+>
+    <Design.DataContext>
+        <vm:ImageViewModel />
+    </Design.DataContext>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}" />
+            <MenuItem Header="Show histogram" Command="{Binding ShowHistogramCommand}" />
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Image Source="{Binding Image}"></Image>
 </Window>

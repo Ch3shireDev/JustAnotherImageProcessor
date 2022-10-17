@@ -1,10 +1,11 @@
 using System.Drawing;
 using System.IO;
+using ProcessorGUI.ViewModels;
 using ProcessorGUI.Views;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
 using MBitmap = System.Drawing.Bitmap;
 
-namespace ProcessorGUI.ViewModels
+namespace ProcessorGUI
 {
     public static class Tools
     {
@@ -18,34 +19,18 @@ namespace ProcessorGUI.ViewModels
         public static MBitmap MakeThresholdConvert(MBitmap bitmap, double threshold)
         {
             for (var i = 0; i < bitmap.Width; i++)
-            for (var j = 0; j < bitmap.Height; j++)
-            {
-                var pixel = bitmap.GetPixel(i, j);
-                var brightness = pixel.GetBrightness();
-                if (brightness < threshold) bitmap.SetPixel(i, j, Color.Black);
-                else bitmap.SetPixel(i, j, Color.White);
-            }
+                for (var j = 0; j < bitmap.Height; j++)
+                {
+                    var pixel = bitmap.GetPixel(i, j);
+                    var brightness = pixel.GetBrightness();
+                    if (brightness < threshold) bitmap.SetPixel(i, j, Color.Black);
+                    else bitmap.SetPixel(i, j, Color.White);
+                }
 
             var bitmap2 = bitmap;
             return bitmap2;
         }
-
-        public static ImageWindow OpenImageWindow(ABitmap bitmap, string title)
-        {
-            var imageViewModel = new ImageViewModel
-            {
-                Image = bitmap
-            };
-
-            var imageWindow = new ImageWindow
-            {
-                DataContext = imageViewModel,
-                Title = title
-            };
-
-            return imageWindow;
-        }
-
+        
         public static ABitmap Clone(this ABitmap bitmap)
         {
             using var memory = new MemoryStream();
@@ -83,17 +68,17 @@ namespace ProcessorGUI.ViewModels
             var blueLUT = new int[sizeof(byte)];
 
             for (var x = 0; x < mimage.Width; x++)
-            for (var y = 0; y < mimage.Height; y++)
-            {
-                var pixel = mimage.GetPixel(x, y);
-                var red = pixel.R;
-                var green = pixel.G;
-                var blue = pixel.B;
+                for (var y = 0; y < mimage.Height; y++)
+                {
+                    var pixel = mimage.GetPixel(x, y);
+                    var red = pixel.R;
+                    var green = pixel.G;
+                    var blue = pixel.B;
 
-                redLUT[red]++;
-                greenLUT[green]++;
-                blueLUT[blue]++;
-            }
+                    redLUT[red]++;
+                    greenLUT[green]++;
+                    blueLUT[blue]++;
+                }
         }
     }
 }

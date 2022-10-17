@@ -4,7 +4,7 @@ using ReactiveUI;
 
 namespace ProcessorGUI.ViewModels;
 
-public class ThresholdViewModel : ViewModelBase
+public class ThresholdViewModel : ReactiveObject
 {
     public event EventHandler ThresholdChanged;
 

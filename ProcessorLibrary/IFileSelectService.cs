@@ -2,5 +2,6 @@
 
 public interface IFileSelectService
 {
-    Task<string[]> SelectFiles();
+    Task<string[]> SelectFilesToOpen();
+    Task<string> SelectFileToSave();
 }

@@ -15,7 +15,9 @@
 		<DockPanel>
 			<Menu DockPanel.Dock="Top">
 				<MenuItem Header="_File">
-					<MenuItem Header="_Open..." Command="{Binding OpenImageWindowCommand}"/>
+					<MenuItem Header="_Open" Command="{Binding OpenImageWindowCommand}"/>
+					<MenuItem Header="_Save" Command="{Binding SaveImageCommand}"/>
+					<MenuItem Header="_Duplicate" Command="{Binding DuplicateImageCommand}"/>
 				</MenuItem>
 			</Menu>
 		</DockPanel>

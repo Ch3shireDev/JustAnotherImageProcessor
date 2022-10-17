@@ -4,15 +4,26 @@ namespace ProcessorTests.Mockups;
 
 public class MockFileService : IFileService
 {
-    private readonly Dictionary<string, BitmapData> _files;
+    public Dictionary<string, ImageData> Files { get; } = new Dictionary<string, ImageData>();
+    public Dictionary<string, ImageData> SavedFiles { get; } = new Dictionary<string, ImageData>();
 
-    public MockFileService(Dictionary<string, BitmapData> files)
+    public MockFileService(Dictionary<string, ImageData> files)
     {
-        _files = files;
+        Files = files;
     }
 
-    public BitmapData LoadBitmap(string filename)
+    public MockFileService()
     {
-        return _files[filename];
+        
+    }
+
+    public ImageData LoadBitmap(string filename)
+    {
+        return Files[filename];
+    }
+
+    public void SaveImage(string fileName, ImageData selectedImage)
+    {
+        SavedFiles.Add(fileName, selectedImage);
     }
 }

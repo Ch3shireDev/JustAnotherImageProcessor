@@ -4,18 +4,20 @@ namespace ProcessorTests.Mockups;
 
 public class MockFileSelectService : IFileSelectService
 {
-    private readonly string[] _filenames;
+    public List<string> FilesToOpen { get; } = new List<string>();
+    public string FileToSave{ get; set; }
+    public MockFileSelectService(){}
 
-    public MockFileSelectService(params string[] filenames)
+    public bool Executed { get; set; }
+
+    public Task<string[]> SelectFilesToOpen()
     {
-        _filenames = filenames;
+        Executed = true;
+        return Task.FromResult(FilesToOpen.ToArray());
     }
 
-    public bool IsSelected { get; set; }
-
-    public Task<string[]> SelectFiles()
+    public Task<string> SelectFileToSave()
     {
-        IsSelected = true;
-        return Task.FromResult(_filenames);
+        return Task.FromResult(FileToSave);
     }
 }
