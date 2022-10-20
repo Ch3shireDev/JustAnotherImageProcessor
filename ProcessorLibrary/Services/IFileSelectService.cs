@@ -1,4 +1,4 @@
-﻿namespace ProcessorLibrary;
+﻿namespace ProcessorLibrary.Services;
 
 public interface IFileSelectService
 {

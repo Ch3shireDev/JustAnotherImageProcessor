@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using ProcessorLibrary;
+using ProcessorLibrary.Services;
 
 namespace ProcessorGUI.Services;
 

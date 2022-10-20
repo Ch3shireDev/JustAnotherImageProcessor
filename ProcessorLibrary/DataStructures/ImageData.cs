@@ -1,17 +1,17 @@
 ﻿using Avalonia.Media.Imaging;
 
-namespace ProcessorLibrary
+namespace ProcessorLibrary.DataStructures
 {
     public class ImageData
     {
-        public ImageData(){}
+        public ImageData() { }
 
         public ImageData(ImageData imageData)
         {
             if (imageData == null) throw new Exception("Image data is null");
             Filename = imageData.Filename;
 
-            if(imageData.Bitmap!=null)
+            if (imageData.Bitmap != null)
             {
                 using var stream = new MemoryStream();
                 imageData?.Bitmap?.Save(stream);

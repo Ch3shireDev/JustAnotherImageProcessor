@@ -1,5 +1,6 @@
 using ProcessorGUI.ViewModels;
 using ProcessorLibrary;
+using ProcessorLibrary.DataStructures;
 using ProcessorTests.Mockups;
 
 namespace ProcessorTests;

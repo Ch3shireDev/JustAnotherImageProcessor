@@ -1,7 +1,9 @@
 using System;
 using ProcessorGUI.ViewModels;
 using ProcessorGUI.Views;
-using ProcessorLibrary;
+using ProcessorLibrary.DataStructures;
+using ProcessorLibrary.Models;
+using ProcessorLibrary.Services;
 
 namespace ProcessorGUI.Services;
 
@@ -9,17 +11,16 @@ public class ImageWindowService : IImageWindowService
 {
     public ImageData CurrentImage { get; private set; }
 
-    public void OpenImageWindow(ImageData imageData)
+    public void OpenImageWindow(ImageModel imageModel)
     {
-        var bitmap = imageData.Bitmap;
+        var bitmap = imageModel.ImageData.Bitmap;
         var size = bitmap.Size;
         var width = size.Width;
         var height = size.Height;
-        var title = $"{imageData.Filename} ({width}x{height})";
-        var imageViewModel = new ImageViewModel(imageData, this)
-        {
-            Image = bitmap
-        };
+        var title = $"{imageModel.ImageData.Filename} ({width}x{height})";
+
+
+        var imageViewModel = new ImageViewModel(imageModel);
 
         var imageWindow = new ImageWindow
         {

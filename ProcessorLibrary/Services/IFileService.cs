@@ -1,4 +1,6 @@
-﻿namespace ProcessorLibrary;
+﻿using ProcessorLibrary.DataStructures;
+
+namespace ProcessorLibrary.Services;
 
 public interface IFileService
 {

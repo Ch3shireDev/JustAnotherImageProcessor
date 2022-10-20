@@ -1,4 +1,6 @@
-using ProcessorLibrary;
+using ProcessorLibrary.DataStructures;
+using ProcessorLibrary.Models;
+using ProcessorLibrary.Services;
 
 namespace ProcessorTests.Mockups;
 
@@ -9,6 +11,11 @@ public class MockImageWindowService : IImageWindowService
     public void OpenImageWindow(ImageData imageData)
     {
         OpenWindows.Add(imageData);
+    }
+
+    public void OpenImageWindow(ImageModel imageData)
+    {
+        OpenWindows.Add(imageData.ImageData);
     }
 
     public void SelectImage(ImageData imageData)

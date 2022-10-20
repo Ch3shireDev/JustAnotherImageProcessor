@@ -1,7 +1,9 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using ProcessorLibrary;
+using ProcessorLibrary.DataStructures;
+using ProcessorLibrary.Models;
+using ProcessorLibrary.Services;
 using ReactiveUI;
 
 namespace ProcessorGUI.ViewModels;
@@ -32,18 +34,17 @@ public class MainWindowViewModel : ReactiveObject
     public ICommand SaveImageCommand => ReactiveCommand.Create(SaveImage);
     public ICommand DuplicateImageCommand => ReactiveCommand.Create(DuplicateImage);
 
-    private void DuplicateImage()
-    {
-        if (SelectedImage == null) return;
-        var newImage = new ImageData(SelectedImage);
-        _imageWindowService.OpenImageWindow(newImage);
-    }
-
-
     private async Task SaveImage()
     {
         var fileName = await _fileSelectService.SelectFileToSave();
-        _fileService.SaveImage(fileName,SelectedImage);
+        _fileService.SaveImage(fileName, SelectedImage);
+    }
+
+    private void DuplicateImage()
+    {
+        var newImage = new ImageData(SelectedImage);
+        var imageModel = new ImageModel(newImage, _fileService, _fileSelectService, _imageWindowService);
+        _imageWindowService.OpenImageWindow(imageModel);
     }
 
     private void CreateThresholdImageWindow()
@@ -57,7 +58,8 @@ public class MainWindowViewModel : ReactiveObject
         foreach (var filePath in filePaths)
         {
             var bitmap = _fileService.LoadBitmap(filePath);
-            _imageWindowService.OpenImageWindow(bitmap);
+            var imageModel = new ImageModel(bitmap, _fileService, _fileSelectService, _imageWindowService);
+            _imageWindowService.OpenImageWindow(imageModel);
         }
     }
 }

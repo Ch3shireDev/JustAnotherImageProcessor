@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using ProcessorGUI.ViewModels;
-using ProcessorLibrary;
+using ProcessorLibrary.DataStructures;
+using ProcessorLibrary.Services;
 
 namespace ProcessorGUI.Services
 {

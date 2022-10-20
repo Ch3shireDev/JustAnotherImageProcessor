@@ -17,6 +17,7 @@
         <ContextMenu>
             <MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}" />
             <MenuItem Header="Show histogram" Command="{Binding ShowHistogramCommand}" />
+		    <MenuItem Header="Save" Command="{Binding SaveImageCommand}"/>
         </ContextMenu>
     </Window.ContextMenu>
     <Image Source="{Binding Image}"></Image>

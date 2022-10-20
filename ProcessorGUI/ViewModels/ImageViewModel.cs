@@ -1,6 +1,5 @@
 using System.Windows.Input;
-using ProcessorGUI.Views;
-using ProcessorLibrary;
+using ProcessorLibrary.Models;
 using ReactiveUI;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
 
@@ -8,15 +7,13 @@ namespace ProcessorGUI.ViewModels
 {
     public class ImageViewModel : ReactiveObject
     {
-        private readonly ImageData _imageData;
-        private readonly IImageWindowService _imageWindowService;
-        public ImageViewModel(ImageData imageData, IImageWindowService imageWindowService)
-        {
-            _imageData = imageData;
-            _imageWindowService = imageWindowService;
-        }
-
         private ABitmap image;
+
+
+        public ImageViewModel(ImageModel imageModel)
+        {
+            ImageModel = imageModel;
+        }
         public ABitmap Image
         {
             get => image;
@@ -27,57 +24,55 @@ namespace ProcessorGUI.ViewModels
             }
         }
 
+        public ImageModel ImageModel { get; set; }
         public ICommand CreateThresholdImageCommand => ReactiveCommand.Create(CreateThresholdImage);
         public ICommand ShowHistogramCommand => ReactiveCommand.Create(ShowHistogram);
-        public ICommand ActivatedCommand => ReactiveCommand.Create(Activate);
+        public ICommand ActivatedCommand => ReactiveCommand.Create(ImageModel.Activate);
+        public ICommand SaveImageCommand => ReactiveCommand.Create(ImageModel.SaveImage);
 
-        private void Activate()
-        {
-            _imageWindowService.SelectImage(_imageData);
-        }
 
         private void CreateThresholdImage()
         {
-            var thresholdViewModel = new ThresholdViewModel();
+            //var thresholdViewModel = new ThresholdViewModel();
 
-            var slider = new ThresholdWindow
-            {
-                DataContext = thresholdViewModel
-            };
+            //var slider = new ThresholdWindow
+            //{
+            //    DataContext = thresholdViewModel
+            //};
 
-            var imageData = new ImageData();
+            //var imageData = new ImageData();
 
-            var imageViewModel = new ImageViewModel(imageData, _imageWindowService);
+            //var imageViewModel = new ImageViewModel(imageData, _fileService, _fileSelectService, _imageWindowService);
 
-            thresholdViewModel.ThresholdChanged += (a, b) =>
-            {
-                imageViewModel.Image =
-                    Tools.MakeThresholdConvert(Image, thresholdViewModel.Threshold / thresholdViewModel.MaxValue);
-            };
+            //thresholdViewModel.ThresholdChanged += (a, b) =>
+            //{
+            //    imageViewModel.Image =
+            //        Tools.MakeThresholdConvert(Image, thresholdViewModel.Threshold / thresholdViewModel.MaxValue);
+            //};
 
-            thresholdViewModel.Refresh();
+            //thresholdViewModel.Refresh();
 
-            slider.Show();
+            //slider.Show();
 
-            var imageWindow = new ImageWindow
-            {
-                DataContext = imageViewModel,
-                Title = "clone"
-            };
+            //var imageWindow = new ImageWindow
+            //{
+            //    DataContext = imageViewModel,
+            //    Title = "clone"
+            //};
 
-            imageWindow.Show();
+            //imageWindow.Show();
         }
 
         public void ShowHistogram()
         {
-            //var histogram = Tools.GetHistogram(Image);
+            ////var histogram = Tools.GetHistogram(Image);
 
-            double[] dataX = { 1, 2, 3, 4, 5 };
-            double[] dataY = { 1, 4, 9, 16, 25 };
+            //double[] dataX = { 1, 2, 3, 4, 5 };
+            //double[] dataY = { 1, 4, 9, 16, 25 };
 
-            var window = new PlotWindow();
-            window.Plot.AddScatter(dataX, dataY);
-            window.Show();
+            //var window = new PlotWindow();
+            //window.Plot.AddScatter(dataX, dataY);
+            //window.Show();
         }
     }
 }
