@@ -1,5 +1,4 @@
 using ProcessorGUI.ViewModels;
-using ProcessorLibrary;
 using ProcessorLibrary.DataStructures;
 using ProcessorTests.Mockups;
 
@@ -12,6 +11,7 @@ public class MainWindowViewModelTests
     private MockFileService? _fileService;
     private MockImageWindowService? _imageWindowService;
     private MainWindowViewModel? _viewModel;
+    private MockHistogramService _histogramService;
 
     [TestInitialize]
     public void Initialize()
@@ -19,8 +19,9 @@ public class MainWindowViewModelTests
         _fileService = new MockFileService();
         _fileSelectService = new MockFileSelectService();
         _imageWindowService = new MockImageWindowService();
+        _histogramService = new MockHistogramService();
 
-        _viewModel = new MainWindowViewModel(_fileService, _fileSelectService, _imageWindowService);
+        _viewModel = new MainWindowViewModel(_fileService, _fileSelectService, _imageWindowService, _histogramService);
     }
 
     /// <summary>
@@ -54,7 +55,7 @@ public class MainWindowViewModelTests
 
         _fileService?.Files.Add("image1.png", image1);
         _fileService?.Files.Add("image2.png", image2);
-        
+
         _fileSelectService?.FilesToOpen.Add("image1.png");
         _fileSelectService?.FilesToOpen.Add("image2.png");
 
@@ -78,7 +79,7 @@ public class MainWindowViewModelTests
     public void SaveImageTest()
     {
         var image1 = new ImageData { Filename = "image1.png" };
-        
+
         _imageWindowService?.OpenWindows.Add(image1);
 
         _imageWindowService?.SelectImage(image1);
@@ -92,7 +93,7 @@ public class MainWindowViewModelTests
     }
 
     /// <summary>
-    /// User should be able to duplicate image. After calling command, new image is created with same content as selected.
+    ///     User should be able to duplicate image. After calling command, new image is created with same content as selected.
     /// </summary>
     [TestMethod]
     public void DuplicateImageTest()

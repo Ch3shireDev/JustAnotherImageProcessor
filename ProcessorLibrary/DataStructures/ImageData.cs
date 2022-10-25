@@ -17,9 +17,11 @@ namespace ProcessorLibrary.DataStructures
                 imageData?.Bitmap?.Save(stream);
                 stream.Position = 0;
                 Bitmap = new Bitmap(stream);
+                Bytes = stream.ToArray();
             }
         }
         public string Filename { get; set; }
         public Bitmap? Bitmap { get; set; }
+        public byte[] Bytes { get; set; }
     }
 }

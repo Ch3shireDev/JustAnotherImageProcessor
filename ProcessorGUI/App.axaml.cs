@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using ProcessorGUI.Services;
 using ProcessorGUI.ViewModels;
 using ProcessorGUI.Views;
+using ProcessorLibrary.Services;
 
 namespace ProcessorGUI;
 
@@ -21,10 +22,12 @@ public class App : Application
             var fileService = new FileService();
             var fileSelectService = new FileSelectService();
             var imageWindowService = new ImageWindowService();
+            var lutService = new LutService();
+            var histogramService = new HistogramService(lutService);
 
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(fileService, fileSelectService, imageWindowService)
+                DataContext = new MainWindowViewModel(fileService, fileSelectService, imageWindowService, histogramService)
             };
         }
 

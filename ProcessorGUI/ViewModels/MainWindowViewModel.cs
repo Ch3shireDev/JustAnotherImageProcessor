@@ -13,17 +13,19 @@ public class MainWindowViewModel : ReactiveObject
     private readonly IFileSelectService? _fileSelectService;
     private readonly IFileService? _fileService;
     private readonly IImageWindowService? _imageWindowService;
+    private readonly IHistogramService _histogramService;
 
     public MainWindowViewModel()
     {
     }
 
     public MainWindowViewModel(IFileService fileService, IFileSelectService fileSelectService,
-        IImageWindowService imageWindowService)
+        IImageWindowService imageWindowService, IHistogramService histogramService)
     {
         _fileService = fileService;
         _fileSelectService = fileSelectService;
         _imageWindowService = imageWindowService;
+        _histogramService = histogramService;
 
         _imageWindowService.ImageSelected += (_, _) => { SelectedImage = _imageWindowService.CurrentImage; };
     }
@@ -43,7 +45,7 @@ public class MainWindowViewModel : ReactiveObject
     private void DuplicateImage()
     {
         var newImage = new ImageData(SelectedImage);
-        var imageModel = new ImageModel(newImage, _fileService, _fileSelectService, _imageWindowService);
+        var imageModel = new ImageModel(newImage, _fileService, _fileSelectService, _imageWindowService, _histogramService);
         _imageWindowService.OpenImageWindow(imageModel);
     }
 
@@ -58,7 +60,7 @@ public class MainWindowViewModel : ReactiveObject
         foreach (var filePath in filePaths)
         {
             var bitmap = _fileService.LoadBitmap(filePath);
-            var imageModel = new ImageModel(bitmap, _fileService, _fileSelectService, _imageWindowService);
+            var imageModel = new ImageModel(bitmap, _fileService, _fileSelectService, _imageWindowService, _histogramService);
             _imageWindowService.OpenImageWindow(imageModel);
         }
     }

@@ -55,7 +55,7 @@ namespace ProcessorGUI
             return new MBitmap(memory2);
         }
 
-        //public static double[] GetHistogram(ABitmap image)
+        //public static double[] GetAllHistograms(ABitmap image)
         //{
 
         //}

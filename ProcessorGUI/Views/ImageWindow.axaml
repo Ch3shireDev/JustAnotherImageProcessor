@@ -16,7 +16,11 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}" />
-            <MenuItem Header="Show histogram" Command="{Binding ShowHistogramCommand}" />
+            <MenuItem Header="Show all histograms" Command="{Binding ShowAllHistogramsCommand}" />
+            <MenuItem Header="Show intensity histogram" Command="{Binding ShowIntensityHistogramCommand}" />
+            <MenuItem Header="Show red histogram" Command="{Binding ShowRedHistogramCommand}" />
+            <MenuItem Header="Show green histogram" Command="{Binding ShowGreenHistogramCommand}" />
+            <MenuItem Header="Show blue histogram" Command="{Binding ShowBlueHistogramCommand}" />
 		    <MenuItem Header="Save" Command="{Binding SaveImageCommand}"/>
         </ContextMenu>
     </Window.ContextMenu>

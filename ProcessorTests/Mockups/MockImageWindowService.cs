@@ -8,11 +8,6 @@ public class MockImageWindowService : IImageWindowService
 {
     public List<ImageData> OpenWindows { get; } = new();
 
-    public void OpenImageWindow(ImageData imageData)
-    {
-        OpenWindows.Add(imageData);
-    }
-
     public void OpenImageWindow(ImageModel imageData)
     {
         OpenWindows.Add(imageData.ImageData);

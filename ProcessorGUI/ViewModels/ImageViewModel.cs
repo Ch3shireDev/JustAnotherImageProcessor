@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using ProcessorGUI.Views;
 using ProcessorLibrary.Models;
 using ReactiveUI;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
@@ -7,26 +8,20 @@ namespace ProcessorGUI.ViewModels
 {
     public class ImageViewModel : ReactiveObject
     {
-        private ABitmap image;
-
 
         public ImageViewModel(ImageModel imageModel)
         {
             ImageModel = imageModel;
         }
-        public ABitmap Image
-        {
-            get => image;
-            set
-            {
-                image = value;
-                this.RaisePropertyChanged();
-            }
-        }
+        public ABitmap Image => ImageModel.ImageData.Bitmap;
 
         public ImageModel ImageModel { get; set; }
         public ICommand CreateThresholdImageCommand => ReactiveCommand.Create(CreateThresholdImage);
-        public ICommand ShowHistogramCommand => ReactiveCommand.Create(ShowHistogram);
+        public ICommand ShowAllHistogramsCommand => ReactiveCommand.Create(ImageModel.ShowAllHistograms);
+        public ICommand ShowIntensityHistogramCommand => ReactiveCommand.Create(ImageModel.ShowIntensityHistogram);
+        public ICommand ShowRedHistogramCommand => ReactiveCommand.Create(ImageModel.ShowRedHistogram);
+        public ICommand ShowGreenHistogramCommand => ReactiveCommand.Create(ImageModel.ShowGreenHistogram);
+        public ICommand ShowBlueHistogramCommand => ReactiveCommand.Create(ImageModel.ShowBlueHistogram);
         public ICommand ActivatedCommand => ReactiveCommand.Create(ImageModel.Activate);
         public ICommand SaveImageCommand => ReactiveCommand.Create(ImageModel.SaveImage);
 
@@ -63,16 +58,5 @@ namespace ProcessorGUI.ViewModels
             //imageWindow.Show();
         }
 
-        public void ShowHistogram()
-        {
-            ////var histogram = Tools.GetHistogram(Image);
-
-            //double[] dataX = { 1, 2, 3, 4, 5 };
-            //double[] dataY = { 1, 4, 9, 16, 25 };
-
-            //var window = new PlotWindow();
-            //window.Plot.AddScatter(dataX, dataY);
-            //window.Show();
-        }
     }
 }
