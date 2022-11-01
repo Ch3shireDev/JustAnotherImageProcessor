@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ProcessorGUI.ViewModels"
         mc:Ignorable="d"
-        MaxHeight="400"
+		
         SizeToContent="WidthAndHeight"
         x:Class="ProcessorGUI.Views.ImageWindow"
         Title="ImageWindow"
@@ -22,7 +22,13 @@
             <MenuItem Header="Show green histogram" Command="{Binding ShowGreenHistogramCommand}" />
             <MenuItem Header="Show blue histogram" Command="{Binding ShowBlueHistogramCommand}" />
 		    <MenuItem Header="Save" Command="{Binding SaveImageCommand}"/>
+		    <MenuItem Header="Scale up 200%" Command="{Binding ShowScaledUp200PercentCommand}"/>
+		    <MenuItem Header="Scale up 150%" Command="{Binding ShowScaledUp150PercentCommand}"/>
+		    <MenuItem Header="Scale down 50%" Command="{Binding ShowScaledDown50PercentCommand}"/>
+		    <MenuItem Header="Scale down 25%" Command="{Binding ShowScaledDown25PercentCommand}"/>
+		    <MenuItem Header="Scale down 20%" Command="{Binding ShowScaledDown20PercentCommand}"/>
+		    <MenuItem Header="Scale down 10%" Command="{Binding ShowScaledDown10PercentCommand}"/>
         </ContextMenu>
     </Window.ContextMenu>
-    <Image Source="{Binding Image}"></Image>
+    <Image Source="{Binding Image}" Width="{Binding DisplayImageWidth}"></Image>
 </Window>

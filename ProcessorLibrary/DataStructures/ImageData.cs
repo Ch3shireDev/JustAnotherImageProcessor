@@ -23,5 +23,7 @@ namespace ProcessorLibrary.DataStructures
         public string Filename { get; set; }
         public Bitmap? Bitmap { get; set; }
         public byte[] Bytes { get; set; }
+        public int Width{ get; set; }
+        public int Height{ get; set; }
     }
 }
