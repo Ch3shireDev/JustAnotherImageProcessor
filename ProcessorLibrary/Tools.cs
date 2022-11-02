@@ -1,11 +1,8 @@
 using System.Drawing;
-using System.IO;
-using ProcessorGUI.ViewModels;
-using ProcessorGUI.Views;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
 using MBitmap = System.Drawing.Bitmap;
 
-namespace ProcessorGUI
+namespace ProcessorLibrary
 {
     public static class Tools
     {

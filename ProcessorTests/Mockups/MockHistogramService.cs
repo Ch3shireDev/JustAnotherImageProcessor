@@ -1,7 +1,7 @@
 using ProcessorLibrary.DataStructures;
 using ProcessorLibrary.Services;
 
-namespace ProcessorTests;
+namespace ProcessorTests.Mockups;
 
 public class MockHistogramService : IHistogramService
 {

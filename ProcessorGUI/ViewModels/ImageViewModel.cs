@@ -1,18 +1,27 @@
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using ProcessorLibrary.Models;
+using ProcessorGUI.Models;
+using ProcessorLibrary.DataStructures;
 using ReactiveUI;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
 
 namespace ProcessorGUI.ViewModels;
 
-public class ImageViewModel : ReactiveObject
+public class ImageViewModel : ReactiveObject, INotifyPropertyChanged
 {
     private int _displayImageWidth = 400;
+
+    public ImageViewModel()
+    {
+    }
 
     public ImageViewModel(ImageModel imageModel)
     {
         ImageModel = imageModel;
     }
+
 
     public ABitmap Image => ImageModel.ImageData.Bitmap;
     public ImageModel ImageModel { get; set; }
@@ -38,59 +47,100 @@ public class ImageViewModel : ReactiveObject
 
     public ICommand ShowScaledUp200PercentCommand => ReactiveCommand.Create(ShowScaledUp200Percent);
 
-    public int DisplayImageWidth
+    //public int DisplayImageWidth
+    //{
+    //    get => _displayImageWidth;
+    //    set => this.RaiseAndSetIfChanged(ref _displayImageWidth, value);
+    //}
+
+    private decimal _scale = 1M;
+
+    public decimal Scale
     {
-        get => _displayImageWidth;
-        set => this.RaiseAndSetIfChanged(ref _displayImageWidth, value);
+        get => _scale;
+        set
+        {
+            _scale = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(Width));
+            OnPropertyChanged(nameof(Height));
+            //OnPropertyChanged(nameof(DisplayImageWidth));
+        }
     }
+
+    public int Width => (int)(ImageModel.ImageData.Width * Scale);
+    public int Height => (int)(ImageModel.ImageData.Height * Scale);
 
     private void ShowScaledDown50Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledDown50Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 0.5);
+        Scale *= 0.5m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledDown50Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
     private void ShowScaledDown25Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledDown25Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 0.25);
+        Scale *= 0.25m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledDown25Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
     private void ShowScaledDown20Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledDown20Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 0.2);
+        Scale *= 0.2m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledDown20Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
     private void ShowScaledDown10Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledDown10Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 0.1);
+        Scale *= 0.1m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledDown10Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
     private void ShowScaledUp150Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledUp150Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 1.5);
+        Scale *= 1.5m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledUp150Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
 
     private void ShowScaledUp200Percent()
     {
-        ImageModel.ShowImageType = ShowImageType.ScaledUp200Percent;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 2);
+        Scale *= 2m;
+        //ImageModel.ShowImageType = ShowImageType.ScaledUp200Percent;
+        //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
     }
 
     private void ShowOriginalSize()
     {
-        ImageModel.ShowImageType = ShowImageType.OriginalSize;
-        DisplayImageWidth = ImageModel.ImageData.Width;
+        Scale = 1M;
+        //ImageModel.ShowImageType = ShowImageType.OriginalSize;
+        //DisplayImageWidth = ImageModel.ImageData.Width;
     }
 
     private void ShowScreenAdjustedWidth()
     {
-        ImageModel.ShowImageType = ShowImageType.ScreenAdjusted;
-        DisplayImageWidth = (int)(ImageModel.ImageData.Width * 0.5);
+        
+        //ImageModel.ShowImageType = ShowImageType.ScreenAdjusted;
+        decimal factorX = (decimal)ImageModel.ImageData.Width /  ImageModel.ScreenWidth;
+        decimal factorY =  (decimal)ImageModel.ImageData.Height /  ImageModel.ScreenHeight;
+
+        if (factorX < 1 && factorY < 1) return;
+
+        if (factorX > factorY)
+        {
+            Scale /= factorX;
+            //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
+        }
+        else
+        {
+            Scale /= factorY;
+            //DisplayImageWidth = (int)(ImageModel.ImageData.Width * Scale);
+        }
+
     }
 
     private void CreateThresholdImage()
@@ -124,4 +174,12 @@ public class ImageViewModel : ReactiveObject
 
         //imageWindow.Show();
     }
+
+      public new event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    
 }

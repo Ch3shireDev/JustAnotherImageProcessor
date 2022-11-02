@@ -25,9 +25,11 @@ public class App : Application
             var lutService = new LutService();
             var histogramService = new HistogramService(lutService);
 
+            var screenDimensions = new ScreenDimensions();
+
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(fileService, fileSelectService, imageWindowService, histogramService)
+                DataContext = new MainWindowViewModel(fileService, fileSelectService, imageWindowService, histogramService, screenDimensions)
             };
         }
 

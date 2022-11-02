@@ -19,11 +19,11 @@ Aplikacja powinna:
 
 Aplikacja powinna:
 
-- [ ] pokazywać obrazy w powiększeniach:
-  - [ ] dopasowany do szerokości ekranu,
-  - [ ] 100% czyli piksel w piksel,
-  - [ ] pomniejszony (50%, 25%, 20% i 10%) i
-  - [ ] powiększony (150%, 200%)
+- [x] pokazywać obrazy w powiększeniach:
+  - [x] dopasowany do szerokości ekranu,
+  - [x] 100% czyli piksel w piksel,
+  - [x] pomniejszony (50%, 25%, 20% i 10%) i
+  - [x] powiększony (150%, 200%)
 - [ ] dostarczać prowadnice do przesuwania obrazu w pionie i poziomie.
 - [ ] opracować algorytm i uruchomić aplikację rozciągania (liniowego i nieliniowego) i wyrównywania przez eqalizację histogramu (metodą przedstawioną na wykładzie).
 

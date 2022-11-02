@@ -1,8 +1,8 @@
 using System;
+using ProcessorGUI.Models;
 using ProcessorGUI.ViewModels;
 using ProcessorGUI.Views;
 using ProcessorLibrary.DataStructures;
-using ProcessorLibrary.Models;
 using ProcessorLibrary.Services;
 
 namespace ProcessorGUI.Services;

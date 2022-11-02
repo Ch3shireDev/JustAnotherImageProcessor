@@ -1,5 +1,5 @@
+using ProcessorGUI.Models;
 using ProcessorLibrary.DataStructures;
-using ProcessorLibrary.Models;
 using ProcessorLibrary.Services;
 
 namespace ProcessorTests.Mockups;
