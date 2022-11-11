@@ -27,9 +27,13 @@ public class App : Application
 
             var screenDimensions = new ScreenDimensions();
 
+            var viewModel = new MainWindowViewModel(fileService, fileSelectService, imageWindowService, histogramService, screenDimensions);
+            
+            if (desktop.Args.Length > 0) viewModel.OpenImage(desktop.Args[0]);
+            
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(fileService, fileSelectService, imageWindowService, histogramService, screenDimensions)
+                DataContext = viewModel
             };
         }
 

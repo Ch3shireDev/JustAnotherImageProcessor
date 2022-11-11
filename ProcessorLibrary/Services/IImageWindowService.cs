@@ -1,5 +1,4 @@
-﻿using ProcessorGUI.Models;
-using ProcessorLibrary.DataStructures;
+﻿using ProcessorLibrary.DataStructures;
 
 namespace ProcessorLibrary.Services
 {

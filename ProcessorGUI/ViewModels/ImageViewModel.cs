@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using ProcessorGUI.Models;
+using ProcessorLibrary;
 using ReactiveUI;
 using ABitmap = Avalonia.Media.Imaging.Bitmap;
 
@@ -136,7 +136,7 @@ public class ImageViewModel : ReactiveObject, INotifyPropertyChanged
 
         //slider.Show();
 
-        //var imageWindow = new ImageWindow
+        //var imageWindow = new ImageView
         //{
         //    DataContext = imageViewModel,
         //    Title = "clone"

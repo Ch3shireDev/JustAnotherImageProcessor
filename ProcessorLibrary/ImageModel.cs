@@ -1,18 +1,16 @@
-﻿using System.Threading.Tasks;
-using ProcessorLibrary.DataStructures;
+﻿using ProcessorLibrary.DataStructures;
 using ProcessorLibrary.Services;
 
-namespace ProcessorGUI.Models
+namespace ProcessorLibrary
 {
-
     public class ImageModel
     {
-        private readonly IFileSelectService _fileSelectService;
-        private readonly IFileService _fileService;
-        private readonly IHistogramService _histogramService;
-        private readonly IScreenDimensions _screenDimensions;
-        private readonly IImageWindowService _imageWindowService;
-        public readonly ImageData ImageData;
+        public IFileSelectService _fileSelectService{ get; }
+     public IFileService _fileService{ get; }
+        public IHistogramService _histogramService{ get; }
+       public IScreenDimensions _screenDimensions{ get; }
+       public IImageWindowService _imageWindowService{ get; }
+        public ImageData ImageData;
         
         public ImageModel(ImageData imageData, IFileService fileService, IFileSelectService fileSelectService,
             IImageWindowService imageWindowService, IHistogramService histogramService, IScreenDimensions screenDimensions)
@@ -24,8 +22,7 @@ namespace ProcessorGUI.Models
             _histogramService = histogramService;
             _screenDimensions = screenDimensions;
         }
-
-        //public ShowImageType ShowImageType { get; set; }
+        
         public int ScreenWidth => _screenDimensions.ScreenWidth;
         public int ScreenHeight => _screenDimensions.ScreenHeight;
         

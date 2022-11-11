@@ -1,4 +1,4 @@
-using ProcessorGUI.Models;
+using ProcessorLibrary;
 using ProcessorLibrary.DataStructures;
 using ProcessorLibrary.Services;
 

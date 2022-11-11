@@ -1,5 +1,5 @@
-using ProcessorGUI.Models;
 using ProcessorGUI.ViewModels;
+using ProcessorLibrary;
 using ProcessorLibrary.DataStructures;
 using ProcessorTests.Mockups;
 using ProcessorTests.Properties;

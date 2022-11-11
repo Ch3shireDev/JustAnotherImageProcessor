@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProcessorGUI": {
+      "commandName": "Project",
+      "commandLineArgs": "Resources/lion.jpg"
+    }
+  }
+}
