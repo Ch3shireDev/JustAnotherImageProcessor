@@ -3,18 +3,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ProcessorGUI.ViewModels"
-        mc:Ignorable="d"
-
-        SizeToContent="WidthAndHeight"
         x:Class="ProcessorGUI.Views.ImageWindow"
-        Title="ImageWindow"
+        Height="{Binding WindowHeight}"
+        Width="{Binding WindowWidth}"
         Activated="ActivatedEvent"
-        Width="{Binding Width}"
-        Height="{Binding Height}"
-        MaxWidth="{Binding Width}"
-        MaxHeight="{Binding Height}"
-        MinWidth="{Binding Width}"
-        MinHeight="{Binding Height}">
+        Title="ImageWindow"
+        mc:Ignorable="d">
     <Design.DataContext>
         <vm:ImageViewModel />
     </Design.DataContext>
@@ -35,5 +29,8 @@
             <MenuItem Header="Scale down 10%" Command="{Binding ShowScaledDown10PercentCommand}" />
         </ContextMenu>
     </Window.ContextMenu>
-    <Image Source="{Binding Image}" Width="{Binding DisplayImageWidth}" />
+    <ScrollViewer AllowAutoHide="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Image Source="{Binding Image}" Width="{Binding Width}" Height="{Binding Height}" />
+    </ScrollViewer>
 </Window>

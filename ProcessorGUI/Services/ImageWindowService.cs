@@ -18,8 +18,7 @@ public class ImageWindowService : IImageWindowService
         var width = size.Width;
         var height = size.Height;
         var title = $"{imageModel.ImageData.Filename} ({width}x{height})";
-
-
+        
         var imageViewModel = new ImageViewModel(imageModel);
 
         var imageWindow = new ImageWindow
@@ -30,7 +29,7 @@ public class ImageWindowService : IImageWindowService
 
         imageWindow.Show();
     }
-
+    
     public void SelectImage(ImageData imageData)
     {
         CurrentImage = imageData;

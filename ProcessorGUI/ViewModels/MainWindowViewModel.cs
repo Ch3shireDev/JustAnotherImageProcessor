@@ -29,6 +29,8 @@ public class MainWindowViewModel : ReactiveObject
         _screenDimensions = screenDimensions;
 
         _imageWindowService.ImageSelected += (_, _) => { SelectedImage = _imageWindowService.CurrentImage; };
+
+        //OpenImage("Resources/lion.jpg");
     }
 
     public ICommand OpenImageWindowCommand => ReactiveCommand.Create(OpenImageWindow);
@@ -36,6 +38,7 @@ public class MainWindowViewModel : ReactiveObject
     public ImageData SelectedImage { get; set; }
     public ICommand SaveImageCommand => ReactiveCommand.Create(SaveImage);
     public ICommand DuplicateImageCommand => ReactiveCommand.Create(DuplicateImage);
+
 
     private async Task SaveImage()
     {
@@ -61,9 +64,15 @@ public class MainWindowViewModel : ReactiveObject
         if (filePaths == null) return;
         foreach (var filePath in filePaths)
         {
-            var bitmap = _fileService?.LoadBitmap(filePath);
-            var imageModel = new ImageModel(bitmap, _fileService, _fileSelectService, _imageWindowService, _histogramService, _screenDimensions);
-            _imageWindowService.OpenImageWindow(imageModel);
+            OpenImage(filePath);
         }
+    }
+
+    private void OpenImage(string filePath)
+    {
+        var bitmap = _fileService?.LoadBitmap(filePath);
+        var imageModel = new ImageModel(bitmap, _fileService, _fileSelectService, _imageWindowService, _histogramService,
+            _screenDimensions);
+        _imageWindowService.OpenImageWindow(imageModel);
     }
 }
