@@ -5,29 +5,56 @@
         xmlns:vm="clr-namespace:ProcessorGUI.ViewModels"
         x:Class="ProcessorGUI.Views.ImageView"
         mc:Ignorable="d"
+			 
 			 >
     <Design.DataContext>
         <vm:ImageViewModel />
     </Design.DataContext>
 	<UserControl.ContextMenu>
 		<ContextMenu>
-			<MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}" />
-			<MenuItem Header="Show all histograms" Command="{Binding ShowAllHistogramsCommand}" />
-			<MenuItem Header="Show intensity histogram" Command="{Binding ShowIntensityHistogramCommand}" />
-			<MenuItem Header="Show red histogram" Command="{Binding ShowRedHistogramCommand}" />
-			<MenuItem Header="Show green histogram" Command="{Binding ShowGreenHistogramCommand}" />
-			<MenuItem Header="Show blue histogram" Command="{Binding ShowBlueHistogramCommand}" />
 			<MenuItem Header="Save" Command="{Binding SaveImageCommand}" />
-			<MenuItem Header="Scale up 200%" Command="{Binding ShowScaledUp200PercentCommand}" />
-			<MenuItem Header="Scale up 150%" Command="{Binding ShowScaledUp150PercentCommand}" />
-			<MenuItem Header="Scale down 50%" Command="{Binding ShowScaledDown50PercentCommand}" />
-			<MenuItem Header="Scale down 25%" Command="{Binding ShowScaledDown25PercentCommand}" />
-			<MenuItem Header="Scale down 20%" Command="{Binding ShowScaledDown20PercentCommand}" />
-			<MenuItem Header="Scale down 10%" Command="{Binding ShowScaledDown10PercentCommand}" />
+			<MenuItem Header="Threshold" Command="{Binding CreateThresholdImageCommand}" />
+			<MenuItem Header="Histogram operations">
+				<MenuItem Header="Show all histograms" Command="{Binding ShowAllHistogramsCommand}" />
+				<MenuItem Header="Show intensity histogram" Command="{Binding ShowIntensityHistogramCommand}" />
+				<MenuItem Header="Show red histogram" Command="{Binding ShowRedHistogramCommand}" />
+				<MenuItem Header="Show green histogram" Command="{Binding ShowGreenHistogramCommand}" />
+				<MenuItem Header="Show blue histogram" Command="{Binding ShowBlueHistogramCommand}" />
+				<MenuItem Header="Rozciąganie liniowe"/>
+				<MenuItem Header="Rozciąganie nieliniowe"/>
+			</MenuItem>
+			<MenuItem Header="Scaling">
+                <MenuItem Header="Scale up 200%" Command="{Binding ShowScaledUp200PercentCommand}" />
+				<MenuItem Header="Scale up 150%" Command="{Binding ShowScaledUp150PercentCommand}" />
+				<MenuItem Header="Scale down 50%" Command="{Binding ShowScaledDown50PercentCommand}" />
+				<MenuItem Header="Scale down 25%" Command="{Binding ShowScaledDown25PercentCommand}" />
+				<MenuItem Header="Scale down 20%" Command="{Binding ShowScaledDown20PercentCommand}" />
+				<MenuItem Header="Scale down 10%" Command="{Binding ShowScaledDown10PercentCommand}" />
+			</MenuItem>
+			
+			<MenuItem Header="One-point operations">
+				<MenuItem Header="Negacja"/>
+				<MenuItem Header="Progowanie binarne"/>
+		
+					
+			</MenuItem>
 		</ContextMenu>
 	</UserControl.ContextMenu>
+	<Panel>
+
+		<ExperimentalAcrylicBorder>
+			<ExperimentalAcrylicBorder.Material>
+				<ExperimentalAcrylicMaterial BackgroundSource="Digger"
+                                             TintColor="Black"
+                                             TintOpacity="1"
+                                             MaterialOpacity="0.65" />
+			</ExperimentalAcrylicBorder.Material>
+		</ExperimentalAcrylicBorder>
+	
+	
 	<ScrollViewer AllowAutoHide="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                   HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 		<Image Source="{Binding Image}" Width="{Binding Width}" Height="{Binding Height}" />
 	</ScrollViewer>
+	</Panel>
 </UserControl>

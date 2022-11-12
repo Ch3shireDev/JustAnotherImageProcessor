@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:ProcessorGUI.ViewModels"
+             xmlns:views="clr-namespace:ProcessorGUI.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ProcessorGUI.Views.MainView">
+
+	<Design.DataContext>
+		<viewModels:MainWindowViewModel />
+	</Design.DataContext>
+	<DockPanel>
+		<DockPanel DockPanel.Dock="Top">
+			<Image Source="/Assets/avalonia-logo.ico" Height="16" Margin="10,0"/>
+			<Label DockPanel.Dock="Left" Content="{Binding Title}" Padding="0,5"/>
+		</DockPanel>
+		<Menu DockPanel.Dock="Top" IsHitTestVisible="True">
+			<MenuItem Header="_File">
+				<MenuItem Header="_Open" Command="{Binding OpenImageWindowCommand}" />
+				<MenuItem Header="_Save" Command="{Binding SaveImageCommand}" />
+				<MenuItem Header="_Duplicate" Command="{Binding DuplicateImageCommand}" />
+			</MenuItem>
+		</Menu>
+		<views:ImageView DataContext="{Binding SelectedViewModel}"/>
+	</DockPanel>
+</UserControl>

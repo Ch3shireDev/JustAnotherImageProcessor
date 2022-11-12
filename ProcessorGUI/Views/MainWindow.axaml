@@ -1,43 +1,17 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:ProcessorGUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:ProcessorGUI.Views"
         mc:Ignorable="d"
+        MinWidth="200"
         x:Class="ProcessorGUI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="ProcessorGUI"
-        TransparencyLevelHint="AcrylicBlur"
+		ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="PreferSystemChrome"
-        ExtendClientAreaToDecorationsHint="True"
         Background="{x:Null}"
         SizeToContent="WidthAndHeight">
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
-    <DockPanel>
-        <ExperimentalAcrylicBorder>
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial BackgroundSource="Digger"
-                                             TintColor="Black"
-                                             TintOpacity="1"
-                                             MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
-		<DockPanel  DockPanel.Dock="Top">
-			<Image Source="/Assets/avalonia-logo.ico" Height="16" Margin="10,0"/>
-			<Label DockPanel.Dock="Left" Content="{Binding Title}" Padding="0,5" />
-		</DockPanel>
-        <Menu DockPanel.Dock="Top" IsHitTestVisible="True">
-            <MenuItem Header="_File">
-                <MenuItem Header="_Open" Command="{Binding OpenImageWindowCommand}" />
-                <MenuItem Header="_Save" Command="{Binding SaveImageCommand}" />
-                <MenuItem Header="_Duplicate" Command="{Binding DuplicateImageCommand}" />
-            </MenuItem>
-        </Menu>
-        <views:ImageView DataContext="{Binding SelectedViewModel}"/>
-    </DockPanel>
+    <views:MainView />
 
 </Window>

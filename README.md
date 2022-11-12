@@ -5,7 +5,7 @@ Projekt na zaliczenie zajęć z Algorytmów Przetwarzania Obrazów.
 ## 1. Odczyt i zapis obrazów
 
 Aplikacja powinna:
-
+d
 - [x] pracować z obrazami zapisanymi w formatach: `.bmp; .tif; .png; .jpg`)
 - [x] zapewniać opcje:
   - [x] wczytywania obrazu,
@@ -42,9 +42,10 @@ Rozciąganie nieliniowe zaimplementować przez funkcję korekcji gamma ze wspó�
 - [ ] opracować algorytm i uruchomić aplikację realizującą typowe operacje punktowe jednoargumentowe takie jak:
 
   - [ ] negacja,
-  - [ ] progowanie binarne lub bez zamiany liczby poziomów szarości z progiem wskazywanym suwakiem i wpisanym jako parametr,
-  - [ ] progowanie z zachowaniem poziomów szarości z progiem wskazywanym suwakiem,
-  - [ ] progowanie binarne lub bez zamiany liczby poziomów z dwoma progami wskazanymi przez wskazywanym suwakiem i wpisanym jako parametr.
+  - [ ] progowanie binarne z zamianą liczby poziomów szarości z progiem wskazywanym suwakiem i wpisanym jako parametr,
+  - [ ] progowanie z zachowaniem poziomów szarości z progiem wskazywanym suwakiem i wpisanym jako parametr,
+  - [ ] progowanie binarne z zamianą liczby poziomów z dwoma progami wskazanymi przez wskazywanym suwakiem i wpisanym jako parametr.
+  - [ ] progowanie binarne bez zamiany liczby poziomów z dwoma progami wskazanymi przez wskazywanym suwakiem i wpisanym jako parametr.
 
 - [ ] przygotować własne monochromatyczne obrazy testowe.
 
